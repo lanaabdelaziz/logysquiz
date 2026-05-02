@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f5ede6;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.wrapper {
+  display: flex;
+  width: 95%;
+  max-width: 1000px;
+  gap: 20px;
+}
+
+.card {
+  flex: 1;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #7c6cff;
+}
+
+.question {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.option {
+  background: #f1efff;
+  padding: 14px;
+  border-radius: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.option:hover {
+  box-shadow: 0 0 8px #dcd6ff;
+}
+
+.correct {
+  background: #bbf7d0 !important;
+}
+
+.wrong {
+  background: #fecaca !important;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.primary {
+  background: #e0dbff;
+  border: none;
+}
+
+.primary:hover {
+  background: #cfc7ff;
+}
+
+.submit {
+  background: white;
+  border: 2px solid #cfc7ff;
+}
+
+.sidebar {
+  width: 220px;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+  height: 10px;
+  background: #eee;
+  border-radius: 10px;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: #cfc7ff;
+  transition: 0.4s;
+}
+
+.q-item {
+  padding: 8px;
+  margin: 6px 0;
+  border-radius: 8px;
+  background: #f3f4f6;
+  cursor: pointer;
+}
+
+.q-item.active {
+  background: #dcd6ff;
+}
+
+.q-item.done {
+  background: #eee7ff;
+}
+
+.result {
+  display: none;
+  text-align: center;
+}
+
+canvas {
+  margin-top: 15px;
+}
+
+@media(max-width:700px){
+  .wrapper {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+<div class="wrapper">
+
+<div class="card" id="quizCard">
+
+<h2>Quiz</h2>
+
+<div class="question" id="question"></div>
+<div id="options"></div>
+
+<div class="buttons">
+  <button class="primary" onclick="prevQuestion()">Previous</button>
+  <button class="primary" onclick="nextQuestion()">Next</button>
+  <button class="primary" onclick="showAnswer()">Show Answer</button>
+  <button class="submit" onclick="endQuiz()">Submit</button>
+</div>
+
+</div>
+
+<div class="sidebar">
+<div class="progress-bar">
+  <div class="progress" id="progress"></div>
+</div>
+<div id="qList"></div>
+</div>
+
+<div class="card result" id="resultCard">
+  <h2>Score</h2>
+  <canvas id="chart" width="200" height="200"></canvas>
+  <p id="scoreText"></p>
+  <button onclick="restart()">Restart</button>
+</div>
+
+</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
